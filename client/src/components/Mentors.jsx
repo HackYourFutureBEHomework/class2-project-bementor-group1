@@ -1,19 +1,18 @@
 import React, { Component } from "react";
 
 import Footer from "../components/Footer";
-import SearchBar from './SearchBar';
-import MainHeader from './MainHeader';
+import SearchBar from "./SearchBar";
+import Header from "./Header";
 
 import "../assets/css/searchMentor.css";
-import { getUsers } from '../api/users';
+import { getUsers } from "../api/users";
 
 class Mentors extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       isLoaded: false,
-      users: [],
+      users: []
     };
   }
 
@@ -36,17 +35,17 @@ class Mentors extends Component {
 
     return (
       <div className="user-profile" key={searchProfile._id}>
-          <img
-            className="user-image1"
-            src={"https://api.adorable.io/avatars/285"}
-            alt="userimage"
-          />
-          <div className="mentorprofile">
-            <h2 className="user-name1">
-              {searchProfile.firstName} {searchProfile.lastName}
-            </h2>
-            <h2 className="user-quote1">{shortBio}</h2>
-          </div>
+        <img
+          className="user-image1"
+          src={"https://api.adorable.io/avatars/285"}
+          alt="userimage"
+        />
+        <div className="mentorprofile">
+          <h2 className="user-name1">
+            {searchProfile.firstName} {searchProfile.lastName}
+          </h2>
+          <h2 className="user-quote1">{shortBio}</h2>
+        </div>
       </div>
     );
   }
@@ -59,11 +58,9 @@ class Mentors extends Component {
 
     return (
       <div>
-        <MainHeader />
+        <Header />
         <SearchBar onSearch={this.onSearch} />
-        <div className="container1">
-          {$searchProfile}
-        </div>
+        <div className="container1">{$searchProfile}</div>
         <Footer />
       </div>
     );

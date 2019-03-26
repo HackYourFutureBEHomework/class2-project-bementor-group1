@@ -5,7 +5,7 @@
   position: relative;
 }
 
-.title {
+.header-title {
   font-family: "Poppins";
   font-size: 90px;
   font-weight: bold;
@@ -18,7 +18,7 @@
   padding: 10px 10px 10px 10px;
 }
 
-.nav-bar {
+.header-navbar {
   margin: auto;
   padding-top: 1.5%;
   padding-bottom: 1.5%;
@@ -30,7 +30,7 @@
   background-color: #00bc66;
 }
 
-.nav-button {
+.header-nav-button {
   padding-left: 3em;
   font-family: "Poppins";
   font-size: 1em;

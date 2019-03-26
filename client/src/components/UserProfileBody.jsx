@@ -23,7 +23,7 @@ class UserProfilePage extends Component {
   }
   renderUser(userprofile) {
     const listInterest = userprofile.interests.map(interest => (
-      <li className="hoverintreset">{interest}</li>
+      <li className="hover-interest">{interest}</li>
     ));
 
     let listSkills = userprofile.skills.map(obj => {
@@ -36,7 +36,7 @@ class UserProfilePage extends Component {
       return (
         <table>
           <tbody>
-            <tr className="hotel-a">
+            <tr>
               <td>{rObjkey}</td>
               <td>
                 <Rating rate={rObjrate} />
