@@ -35,7 +35,11 @@ const Footer = () => {
             rel="noopener noreferrer"
           />
         </a>
-        <a href="https://becentral.org" target="_blank">
+        <a
+          href="https://becentral.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={beCentralLogo} alt="BeCentral logo" />
         </a>
       </div>
