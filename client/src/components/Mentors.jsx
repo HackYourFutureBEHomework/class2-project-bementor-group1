@@ -38,7 +38,7 @@ class Mentors extends Component {
 
   redirectToTarget = searchProfile => {
     this.setState({
-      selecteduser: searchProfile,
+      selecteduser: searchProfile._id,
       isSelected: true
     });
     console.log("this.selecteduser: ", this.state.selecteduser);

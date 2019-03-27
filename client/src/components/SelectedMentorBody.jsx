@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Rating from "./SkillRating";
+import Mentors from "./Mentors";
 //import { handleSelectContact } from "./Mentors";
 
 class SelectedMentorBody extends Component {
@@ -13,7 +14,7 @@ class SelectedMentorBody extends Component {
       isSelected: false
     };
   }
-  /*
+
   componentDidMount() {
     fetch("http://localhost:4000/user")
       .then(res => res.json())
@@ -23,10 +24,10 @@ class SelectedMentorBody extends Component {
           users: json
         });
       });
-  }*/
-  /*
+  }
+
   renderUser(userprofile) {
-     const listInterest = userprofile.interests.map(interest => (
+    const listInterest = userprofile.interests.map(interest => (
       <li className="hoverintreset">{interest}</li>
     ));
 
@@ -82,14 +83,16 @@ class SelectedMentorBody extends Component {
         </div>
       </div>
     );
-  }*/
+  }
   render() {
     //const { users, isLoaded } = this.state;
-    const userprofile = this.props.selecteduser;
+    /*const userprofile = this.props.selecteduser;
     console.log("userprofile", userprofile);
 
-    //const $userProfile = users.map(userprofile => this.renderUser(userprofile));
-    //const $userProfile = this.renderUser(userprofile);
+    const $userProfile = Mentors.map(userprofile =>
+      this.renderUser(userprofile)
+    );
+    const $userProfile = this.renderUser(userprofile);
     /*
     if (!isLoaded) {
       return <div>Loading.....</div>;
