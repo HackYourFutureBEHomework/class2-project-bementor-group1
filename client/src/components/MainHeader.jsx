@@ -30,6 +30,12 @@ class MainHeader extends Component {
                 Login
               </a>
             </li>
+
+            <li className="nav-button">
+              <a href="/SignUp" title="SignUp">
+                Sign Up
+              </a>
+            </li>
           </ul>
         </nav>
       </div>

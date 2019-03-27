@@ -4,6 +4,8 @@ import Home from "./components/Home";
 import UserProfile from "./components/UserProfile";
 import Mentors from "./components/Mentors";
 import Contact from "./components/ContactPage";
+import SignUp from "./components/SignUpPage";
+
 class App extends Component {
   render() {
     return (
@@ -13,6 +15,7 @@ class App extends Component {
           <Route path="/user" component={UserProfile} />
           <Route path="/mentors" component={Mentors} />
           <Route path="/contact" component={Contact} />
+          <Route path="/signup" component={SignUp} />
 
           <Route render={() => <p>Page not found</p>} />
         </Switch>

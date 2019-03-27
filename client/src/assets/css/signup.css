@@ -1,0 +1,63 @@
+h1 {
+  margin: 20px;
+  text-align: center;
+}
+
+.signup-center {
+  text-align: center;
+}
+
+.signup-form {
+  width: 55%;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f5f5f5;
+}
+
+input[type="number"],
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  background: rgba(179, 178, 178, 0.1);
+  font-size: 16px;
+  padding: 12px;
+  width: 50%;
+  background-color: #e8eeef;
+  margin: 20px;
+  border: none;
+}
+
+fieldset {
+  margin-bottom: 20px;
+  border: none;
+}
+
+label {
+  display: block;
+}
+
+label.light {
+  font-weight: 300;
+  display: inline;
+}
+
+.signup-learn {
+  margin-top: 15px;
+}
+
+input[type="checkbox"] {
+  margin: 10px;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  padding: 20px;
+  color: rgb(255, 255, 255);
+  background-color: #00bc66;
+  text-align: center;
+  border-radius: 50px;
+  width: 25%;
+}
