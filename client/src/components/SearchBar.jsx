@@ -12,9 +12,12 @@ class SearchBar extends Component {
   };
 
   handleInputChanged = event => {
+    //console.log("this.state.query", this.state.query);
     this.setState({
       query: event.target.value
     });
+    console.log("event.target.value", event.target.value);
+    //console.log("this.state.query", this.state.query);
   };
 
   render() {
