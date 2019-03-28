@@ -3,10 +3,10 @@ import React, { Component } from "react";
 class MainBody extends Component {
   render() {
     return (
-      <main className="homePage">
-        <div className="container">
-          <h2 className="pageSubTitle1">About the Project</h2>
-          <p className="paragraph1">
+      <main>
+        <div className="home-container">
+          <h2 className="home-pageSubTitle1">About the Project</h2>
+          <p className="home-paragraph1">
             {" "}
             The Bementor. project is about Le Lorem Ipsum est simplement du faux
             texte employé dans la composition et la mise en page avant
@@ -17,11 +17,11 @@ class MainBody extends Component {
             siècles, mais s'est aussi adapté à la bureautique informatique, sans
             que son contenu n'en soit modifié.
           </p>
-          <img className="main-image" alt="Female coders" />
+          <img className="home-image" alt="Female coders" />
         </div>
 
-        <h2 className="pageSubTitle">About the Team</h2>
-        <p className="paragraph">
+        <h2 className="home-pageSubTitle2">About the Team</h2>
+        <p className="home-paragraph2">
           Le Lorem Ipsum est simplement du faux texte employé dans la
           composition et la mise en page avant impression. Le Lorem Ipsum est le
           faux texte standard de l'imprimerie depuis les années 1500, quand un

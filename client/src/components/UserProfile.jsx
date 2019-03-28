@@ -1,12 +1,12 @@
 import React from "react";
 import Footer from "../components/Footer";
 import UserProfileBody from "../components/UserProfileBody";
-import MainHeader from './MainHeader';
+import Header from "./Header";
 
 const UserProfile = props => {
   return (
     <div>
-      <MainHeader />
+      <Header />
       <UserProfileBody />
       <Footer />
     </div>

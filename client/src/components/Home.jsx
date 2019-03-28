@@ -1,12 +1,12 @@
 import React from "react";
-import MainHeader from "./MainHeader";
+import Header from "./Header";
 import MainBody from "../components/MainBody";
 import Footer from "../components/Footer";
 
 const Home = props => {
   return (
     <div>
-      <MainHeader />
+      <Header />
       <MainBody />
       <Footer />
     </div>
