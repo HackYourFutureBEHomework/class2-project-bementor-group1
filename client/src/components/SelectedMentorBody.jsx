@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Rating from "./SkillRating";
-import Mentors from "./Mentors";
+//import Mentors from "./Mentors";
 //import { handleSelectContact } from "./Mentors";
 
 class SelectedMentorBody extends Component {
