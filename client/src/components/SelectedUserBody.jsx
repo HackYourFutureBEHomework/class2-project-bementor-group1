@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Rating from "./SkillRating";
 
-class SelectedMentorBody extends Component {
+class SelectedUserBody extends Component {
   renderUser(userprofile) {
     const listInterest = userprofile.interests.map(interest => (
       <li className="hover-intreset">{interest}</li>
@@ -74,4 +74,4 @@ class SelectedMentorBody extends Component {
   }
 }
 
-export default SelectedMentorBody;
+export default SelectedUserBody;

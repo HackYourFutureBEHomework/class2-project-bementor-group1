@@ -38,7 +38,7 @@ class Mentors extends Component {
     });
     //console.log("this.selecteduser: ", searchProfile);
     this.props.history.push({
-      pathname: "/selectedmentor",
+      pathname: "/SelectedUser",
       state: { selecteduser: searchProfile }
     });
   };

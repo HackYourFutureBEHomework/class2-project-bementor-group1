@@ -1,19 +1,19 @@
 import React, { Component } from "react";
-import Footer from "../components/Footer";
-import SelectedMentorBody from "../components/SelectedMentorBody";
+import Footer from "./Footer";
+import SelectedUserBody from "../components/SelectedUserBody";
 import MainHeader from "./MainHeader";
 
-class SelectedMentor extends Component {
+class SelectedUser extends Component {
   render() {
     let selecteduserprofile = this.props.history.location.state.selecteduser;
     return (
       <div>
         <MainHeader />
-        <SelectedMentorBody selecteduser={selecteduserprofile} />
+        <SelectedUserBody selecteduser={selecteduserprofile} />
         <Footer />
       </div>
     );
   }
 }
 
-export default SelectedMentor;
+export default SelectedUser;
