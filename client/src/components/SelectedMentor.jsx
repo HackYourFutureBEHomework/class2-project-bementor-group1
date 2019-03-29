@@ -5,8 +5,8 @@ import MainHeader from "./MainHeader";
 
 class SelectedMentor extends Component {
   render() {
-    const selecteduserprofile = this.props.history.location.state.selecteduser;
-
+    //console.log("this.props.selecteduser", this.props.selecteduser);
+    let selecteduserprofile = this.props.history.location.state.selecteduser;
     return (
       <div>
         <MainHeader />
