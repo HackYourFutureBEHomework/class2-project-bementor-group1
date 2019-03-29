@@ -1,34 +1,10 @@
 import React, { Component } from "react";
 import Rating from "./SkillRating";
-//import Mentors from "./Mentors";
-//import { handleSelectContact } from "./Mentors";
 
 class SelectedMentorBody extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoaded: false,
-      users: [],
-      rate: [],
-      selecteduser: undefined,
-      isSelected: false
-    };
-  }
-
-  componentDidMount() {
-    fetch("http://localhost:4000/user")
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          isLoaded: true,
-          users: json
-        });
-      });
-  }
-
   renderUser(userprofile) {
     const listInterest = userprofile.interests.map(interest => (
-      <li className="hoverintreset">{interest}</li>
+      <li className="hover-intreset">{interest}</li>
     ));
 
     let listSkills = userprofile.skills.map(obj => {
@@ -41,7 +17,7 @@ class SelectedMentorBody extends Component {
       return (
         <table>
           <tbody>
-            <tr className="hotel-a">
+            <tr className="icon-a">
               <td>{rObjkey}</td>
               <td>
                 <Rating rate={rObjrate} />
@@ -55,7 +31,11 @@ class SelectedMentorBody extends Component {
     return (
       <div className="user-wrapper">
         <div className="user">
-          <img className="user-image" src={userprofile.img} alt="userimage" />
+          <img
+            className="user-image"
+            src={"https://api.adorable.io/avatars/285"}
+            alt="userimage"
+          />
           <div className="user-intro">
             <h2 className="user-name">
               {userprofile.firstName} {userprofile.lastName}
@@ -85,20 +65,11 @@ class SelectedMentorBody extends Component {
     );
   }
   render() {
-    //const { users, isLoaded } = this.state;
-    /*const userprofile = this.props.selecteduser;
-    console.log("userprofile", userprofile);
+    const userprofile = this.props.selecteduser;
+    //console.log("userprofile", userprofile);
 
-    const $userProfile = Mentors.map(userprofile =>
-      this.renderUser(userprofile)
-    );
     const $userProfile = this.renderUser(userprofile);
-    /*
-    if (!isLoaded) {
-      return <div>Loading.....</div>;
-    }
-*/
-    return <div>hello</div>;
+    return <div>{$userProfile}</div>;
   }
 }
 

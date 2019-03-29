@@ -6,7 +6,6 @@ import MainHeader from "./MainHeader";
 
 import "../assets/css/searchMentor.css";
 import { getUsers } from "../api/users";
-//import UserProfile from "./UserProfile";
 
 class Mentors extends Component {
   constructor(props) {
@@ -32,21 +31,19 @@ class Mentors extends Component {
     });
   };
 
-  // userpage = event => {
-  //   console.log("event.target.value", this.state.users);
-  // };
-
   redirectToTarget = searchProfile => {
     this.setState({
-      selecteduser: searchProfile._id,
+      selecteduser: searchProfile,
       isSelected: true
     });
-    console.log("this.selecteduser: ", this.state.selecteduser);
-    this.props.history.push("/selectedmentor");
+    //console.log("this.selecteduser: ", searchProfile);
+    this.props.history.push({
+      pathname: "/selectedmentor",
+      state: { selecteduser: searchProfile }
+    });
   };
 
   handleSelectContact(searchProfile) {
-    //console.log("selected user: ", searchProfile);
     this.setState({
       selecteduser: searchProfile,
       isSelected: true
@@ -57,45 +54,7 @@ class Mentors extends Component {
   renderProfile(searchProfile) {
     let shortBio = searchProfile.bio;
     shortBio = shortBio.substring(0, 20) + "...";
-    /*    console.log("tafter selection", this.state.selecteduser);
-    console.log("isSelected", this.state.isSelected);
-    if (this.state.isSelected === true) {
-      const userprofile = this.state.selecteduser;
 
-      console.log(
-        "this.state.selecteduser.length id",
-        this.state.selecteduser._id
-      );
-
-      return (
-        <div className="user-wrapper">
-          <div className="user">
-            <img className="user-image" src={userprofile.img} alt="userimage" />
-            <div className="user-intro">
-              <h2 className="user-name">
-                {userprofile.firstName} {userprofile.lastName}
-              </h2>
-
-              <h2 className="user-quote">{userprofile.tagLine}</h2>
-            </div>
-          </div>
-          <div className="user-title">
-            <h3 className="user-title1">Campus</h3>
-            <h3 className="user-title2">{userprofile.campus}</h3>
-          </div>
-          <h3 className="user-title3">Bio</h3>
-          <p className="user-description">{userprofile.bio}</p>
-        </div>
-      );
-    } else {*/
-    /*
-    return (
-      <div
-        className="user-profile"
-        onClick={this.handleSelectContact.bind(this, searchProfile)}
-        key={searchProfile._id}
-      >
-*/
     return (
       <div
         className="user-profile"
@@ -115,7 +74,6 @@ class Mentors extends Component {
         </div>
       </div>
     );
-    //}
   }
 
   render() {

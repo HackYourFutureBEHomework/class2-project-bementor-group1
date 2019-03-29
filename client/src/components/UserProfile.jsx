@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../components/Footer";
 import UserProfileBody from "../components/UserProfileBody";
-import MainHeader from './MainHeader';
+import MainHeader from "./MainHeader";
 
 const UserProfile = props => {
   return (
