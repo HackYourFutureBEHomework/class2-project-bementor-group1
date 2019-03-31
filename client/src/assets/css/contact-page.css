@@ -1,0 +1,29 @@
+.contact-info {
+  font-family: "aileron", sans-serif;
+  background: #00bc66;
+  color: #fff;
+  padding-left: 200px;
+  position: relative;
+}
+
+.contact-info-address {
+  position: relative;
+  padding-left: 180px;
+  margin-bottom: 30px;
+  line-height: 2;
+  min-height: 50px;
+}
+
+.contact-info-email {
+  position: relative;
+  padding-left: 180px;
+  margin-bottom: 30px;
+  min-height: 30px;
+}
+
+.contact-infos-tel {
+  position: relative;
+  padding-left: 180px;
+  margin-bottom: 30px;
+  min-height: 50px;
+}
