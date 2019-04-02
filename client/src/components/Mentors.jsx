@@ -36,10 +36,13 @@ class Mentors extends Component {
       selecteduser: searchProfile,
       isSelected: true
     });
+    let redirecturl = "";
+    redirecturl = "/userprofile/" + searchProfile._id;
+
     //console.log("this.selecteduser: ", searchProfile);
     this.props.history.push({
-      pathname: "/SelectedUser",
-      state: { selecteduser: searchProfile }
+      pathname: redirecturl
+      //state: { selecteduser: searchProfile }
     });
   };
 
