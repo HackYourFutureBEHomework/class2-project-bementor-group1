@@ -7,29 +7,24 @@ class UserProfilePage extends Component {
     super(props);
     this.state = {
       isLoaded: false,
-      users: [],
+      user: [],
       rate: []
     };
   }
   componentDidMount() {
-    console.log("componemtdidmount");
-    //console.log("this.props.selecteduser", this.props.selecteduser._id);
     const { userid } = this.props.userid;
     const singleuserurl = "http://localhost:4000/user/" + userid;
+
     fetch(singleuserurl)
       .then(res => res.json())
       .then(json => {
         this.setState({
           isLoaded: true,
-          users: json
+          user: json
         });
       });
-    console.log("this.state.users", this.state.users);
-    console.log("userid", userid);
   }
   renderUser(userprofile) {
-    console.log("userprofile", userprofile);
-    //console.log("this.state.users.interests", this.state.users.interests);
     let listInterest = userprofile.interests.map(interest1 => {
       return <li className="hover-intreset">{interest1}</li>;
     });
@@ -92,16 +87,13 @@ class UserProfilePage extends Component {
     );
   }
   render() {
-    const { users, isLoaded } = this.state;
-    console.log(" render", users);
+    const { user, isLoaded } = this.state;
 
-    //const $userProfile = users.map(userprofile => this.renderUser(userprofile));
-    //let $userProfile = this.renderUser(users);
     let $userProfile;
     if (!isLoaded) {
       return <div>Loading.....</div>;
     } else {
-      $userProfile = this.renderUser(users);
+      $userProfile = this.renderUser(user);
 
       return <div>{$userProfile}</div>;
     }

@@ -6,7 +6,7 @@ import MainHeader from "./MainHeader";
 class UserProfile extends Component {
   render() {
     let selecteduserprofile = this.props.match.params;
-    console.log("userid: this.props.match.params", this.props.match.params);
+
     return (
       <div>
         <MainHeader />
