@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Body extends Component {
+class MainBody extends Component {
   render() {
     return (
       <main className="homePage">
@@ -38,4 +38,4 @@ class Body extends Component {
     );
   }
 }
-export default Body;
+export default MainBody;

@@ -13,7 +13,6 @@
 }
 
 .user-image {
-  content: url("../images/user.jpg");
   border-radius: 50%;
   max-width: 250px;
   max-height: 250px;
@@ -99,6 +98,9 @@
   list-style: none;
   font-weight: normal;
   font-size: large;
+}
+.hover-intreset:hover {
+  background-color: green;
 }
 
 .user-skills {

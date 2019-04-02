@@ -1,0 +1,16 @@
+.icon-a {
+  color: rgb(63, 196, 63);
+}
+.icon-b {
+  color: rgb(184, 184, 179);
+}
+
+table {
+  margin: 0 auto;
+}
+
+table td {
+  padding: 10px 5px;
+
+  margin: left;
+}

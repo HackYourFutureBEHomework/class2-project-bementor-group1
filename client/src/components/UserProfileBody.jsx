@@ -1,63 +1,77 @@
+import Rating from "../components/SkillRating";
+
 import React, { Component } from "react";
 
-const interests = [
-  "First Interest",
-  "Second Interest",
-  "Third Interest",
-  "Forth Interest",
-  "Fifth Interest"
-];
-const listInterest = interests.map(interest => (
-  <li>
-    <a className="list">{interest}</a>
-  </li>
-));
+class UserProfilePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoaded: false,
+      user: [],
+      rate: []
+    };
+  }
+  componentDidMount() {
+    const { userid } = this.props.userid;
+    const singleuserurl = "http://localhost:4000/user/" + userid;
 
-const skills = [
-  "First skill",
-  "Second skill",
-  "Third skill",
-  "Forth skill",
-  "Fifth skill"
-];
-const listSkills = skills.map(skill => <li>{skill}</li>);
+    fetch(singleuserurl)
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          isLoaded: true,
+          user: json
+        });
+      });
+  }
+  renderUser(userprofile) {
+    let listInterest = userprofile.interests.map(interest1 => {
+      return <li className="hover-intreset">{interest1}</li>;
+    });
 
-class UserProfileBody extends Component {
-  render() {
+    let listSkills = userprofile.skills.map(obj => {
+      let rObjkey = {};
+      let rObjrate = {};
+      rObjkey = obj.key;
+
+      rObjrate = obj.rate;
+
+      return (
+        <table>
+          <tbody>
+            <tr className="hotel-a">
+              <td>{rObjkey}</td>
+              <td>
+                <Rating rate={rObjrate} />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      );
+    });
+
     return (
       <div className="user-wrapper">
         <div className="user">
-          <img className="user-image" />
+          <img
+            className="user-image"
+            src={"https://api.adorable.io/avatars/285"}
+            alt="userimage"
+          />
           <div className="user-intro">
-            <h2 className="user-name">Michiel Leyman</h2>
-
-            <h2 className="user-quote">
-              I make useful things for other humans
+            <h2 className="user-name">
+              {userprofile.firstName} {userprofile.lastName}
             </h2>
+
+            <h2 className="user-quote">{userprofile.tagLine}</h2>
           </div>
         </div>
         <div className="user-title">
           <h3 className="user-title1">Campus</h3>
-          <h3 className="user-title2">Becentral</h3>
+          <h3 className="user-title2">{userprofile.campus}</h3>
         </div>
         <h3 className="user-title3">Bio</h3>
-        <p className="user-description">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-          inventore incidunt impedit, atque debitis nostrum consectetur,
-          dolorum, doloremque repellat cupiditate numquam enim odio iste ratione
-          officia? Veritatis velit facere necessitatibus! Lorem, ipsum dolor sit
-          amet consectetur adipisicing elit. Voluptas inventore incidunt
-          impedit, atque debitis nostrum consectetur, dolorum, doloremque
-          repellat cupiditate numquam enim odio iste ratione officia? Veritatis
-          velit facere necessitatibus! Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Voluptas inventore incidunt impedit, atque debitis
-          nostrum consectetur, dolorum, doloremque repellat cupiditate numquam
-          enim odio iste ratione officia? Veritatis velit facere necessitatibus!
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-          inventore incidunt impedit, atque debitis nostrum consectetur,
-          dolorum, doloremque repellat cupiditate numquam enim odio iste ratione
-          officia? Veritatis velit facere necessitatibus!
-        </p>
+        <p className="user-description">{userprofile.bio}</p>
         <div className="user-info">
           <div className="user-interests-wraper">
             <h3 className="user-interests">Interests</h3>
@@ -65,11 +79,25 @@ class UserProfileBody extends Component {
           </div>
           <div className="user-skills-wraper">
             <h3 className="user-skills">Skills</h3>
+
             <ul className="user-skills-list">{listSkills}</ul>
           </div>
         </div>
       </div>
     );
   }
+  render() {
+    const { user, isLoaded } = this.state;
+
+    let $userProfile;
+    if (!isLoaded) {
+      return <div>Loading.....</div>;
+    } else {
+      $userProfile = this.renderUser(user);
+
+      return <div>{$userProfile}</div>;
+    }
+  }
 }
-export default UserProfileBody;
+
+export default UserProfilePage;
