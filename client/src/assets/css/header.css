@@ -37,3 +37,16 @@
   font-weight: lighter;
   color: white;
 }
+
+.title {
+  font-family: "Poppins";
+  font-size: 90px;
+  font-weight: bold;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  color: #00bc66;
+  padding: 10px 10px 10px 10px;
+}
