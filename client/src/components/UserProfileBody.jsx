@@ -13,7 +13,7 @@ class UserProfilePage extends Component {
   }
   componentDidMount() {
     const { userid } = this.props.userid;
-    const singleuserurl = "http://localhost:4000/user/" + userid;
+    const singleuserurl = "http://localhost:4000/api/user/" + userid;
 
     fetch(singleuserurl)
       .then(res => res.json())
@@ -39,7 +39,7 @@ class UserProfilePage extends Component {
       return (
         <table>
           <tbody>
-            <tr className="hotel-a">
+            <tr>
               <td>{rObjkey}</td>
               <td>
                 <Rating rate={rObjrate} />

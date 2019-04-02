@@ -1,4 +1,9 @@
-.main-image {
+.home-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.home-image {
   max-width: 800px;
   max-height: 503px;
   content: url("../images/front-image.gif");
@@ -7,7 +12,7 @@
   margin-right: 2%;
 }
 
-.pageSubTitle1 {
+.home-pageSubTitle1 {
   font-size: 4rem;
   text-align: center;
   font-family: "Poppins";
@@ -15,14 +20,8 @@
   margin-left: 5%;
   color: #00bc66;
 }
-.paragraph1 {
-  padding: 20px 80px 0px 80px;
-  text-align: center;
-  font-family: "Poppins";
-  margin-top: 10%;
-}
 
-.pageSubTitle {
+.home-pageSubTitle2 {
   font-size: 4rem;
   text-align: center;
   font-family: "Poppins";
@@ -30,7 +29,15 @@
   color: #00bc66;
 }
 
-.paragraph {
+.home-paragraph1 {
+  padding: 20px 80px 0px 80px;
+  text-align: center;
+  font-family: "Poppins";
+  margin-top: 10%;
+}
+
+
+.home-paragraph2 {
   padding: 20px 80px 50px 80px;
   text-align: center;
   font-family: "Poppins";
@@ -38,7 +45,3 @@
   margin-right: 20%;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-}

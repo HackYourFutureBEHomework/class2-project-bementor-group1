@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Footer from "../components/Footer";
 import SearchBar from "./SearchBar";
-import MainHeader from "./MainHeader";
+import Header from "./Header";
 
 import "../assets/css/searchMentor.css";
 import { getUsers } from "../api/users";
@@ -87,7 +87,7 @@ class Mentors extends Component {
 
     return (
       <div>
-        <MainHeader />
+        <Header />
         <SearchBar onSearch={this.onSearch} />
         <div className="container1">{$searchProfile}</div>
         <Footer />

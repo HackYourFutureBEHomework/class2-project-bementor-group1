@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Footer from "../components/Footer";
 import UserProfileBody from "../components/UserProfileBody";
-import MainHeader from "./MainHeader";
+import Header from "./Header";
 
 class UserProfile extends Component {
   render() {
@@ -9,7 +9,7 @@ class UserProfile extends Component {
 
     return (
       <div>
-        <MainHeader />
+        <Header />
         <UserProfileBody userid={selecteduserprofile} />
         <Footer />
       </div>
