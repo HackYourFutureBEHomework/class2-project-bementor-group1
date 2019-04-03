@@ -15,12 +15,7 @@ class UserProfilePage extends Component {
     };
   }
 
-  handleEditClick() {
-    this.setState({
-      editModeEnabled: !this.state.editModeEnabled
-    });
-    console.log("editModeEnabled");
-  }
+  handleEditClick = () => this.setState({ editProfile: true });
 
   componentDidMount() {
     const { userid } = this.props.userid;
