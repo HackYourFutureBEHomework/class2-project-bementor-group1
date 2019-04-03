@@ -1,5 +1,6 @@
 import Rating from "../components/SkillRating";
 import EditButtom from "../assets/images/edit.png";
+import "../assets/css/user-profile-body.css";
 
 import React, { Component } from "react";
 
@@ -79,7 +80,7 @@ class UserProfilePage extends Component {
           <h3 className="user-title1">Campus</h3>
           <h3 className="user-title2">{userprofile.campus}</h3>
           <img
-            className="edit-buttom"
+            className="user-edit-buttom"
             src={EditButtom}
             alt="Edit buttom"
             onClick={this.handleEditClick.bind(this)}

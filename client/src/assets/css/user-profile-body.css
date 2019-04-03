@@ -63,6 +63,13 @@
   color: #00bc66;
 }
 
+.user-edit-buttom {
+  max-width: 30px;
+  max-height: 30px;
+  margin-top: 4.5%;
+  margin-left: 63%;
+}
+
 .user-title3 {
   font-weight: normal;
   font-size: x-large;
