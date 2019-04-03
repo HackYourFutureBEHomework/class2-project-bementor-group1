@@ -1,4 +1,5 @@
 import Rating from "../components/SkillRating";
+import EditButtom from "../assets/images/edit.png";
 
 import React, { Component } from "react";
 
@@ -11,6 +12,14 @@ class UserProfilePage extends Component {
       rate: []
     };
   }
+
+  handleEditClick() {
+    this.setState({
+      editModeEnabled: !this.state.editModeEnabled
+    });
+    console.log("editModeEnabled");
+  }
+
   componentDidMount() {
     const { userid } = this.props.userid;
     const singleuserurl = "http://localhost:4000/api/user/" + userid;
@@ -69,6 +78,12 @@ class UserProfilePage extends Component {
         <div className="user-title">
           <h3 className="user-title1">Campus</h3>
           <h3 className="user-title2">{userprofile.campus}</h3>
+          <img
+            className="edit-buttom"
+            src={EditButtom}
+            alt="Edit buttom"
+            onClick={this.handleEditClick.bind(this)}
+          />
         </div>
         <h3 className="user-title3">Bio</h3>
         <p className="user-description">{userprofile.bio}</p>
