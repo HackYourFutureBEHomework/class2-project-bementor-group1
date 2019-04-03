@@ -10,7 +10,8 @@ class UserProfilePage extends Component {
     this.state = {
       isLoaded: false,
       user: [],
-      rate: []
+      rate: [],
+      editProfile: false
     };
   }
 
