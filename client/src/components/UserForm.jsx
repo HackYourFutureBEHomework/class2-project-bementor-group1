@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import User from "../../../models/User";
+import User from "../models/User";
 
 class ProfileEditor extends Component {
   state = {};

@@ -1,8 +1,15 @@
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Modal from "react-modal";
+import UserForm from "./UserForm";
+import User from "../models/User";
+
 import Rating from "../components/SkillRating";
 import EditButtom from "../assets/images/edit.png";
+
 import "../assets/css/user-profile-body.css";
 
-import React, { Component } from "react";
+Modal.setAppElement("#root");
 
 class UserProfilePage extends Component {
   constructor(props) {
@@ -15,7 +22,11 @@ class UserProfilePage extends Component {
     };
   }
 
-  handleEditClick = () => this.setState({ editProfile: true });
+  toggleEditor = () => {
+    this.setState(prevState => ({ editProfile: !prevState.editProfile }));
+  };
+
+  //handleEditClick = () => this.setState({ editProfile: true });
 
   componentDidMount() {
     const { userid } = this.props.userid;
@@ -31,6 +42,9 @@ class UserProfilePage extends Component {
       });
   }
   renderUser(userprofile) {
+    const { editingProfile } = this.state;
+    const { user } = this.props;
+
     let listInterest = userprofile.interests.map(interest1 => {
       return <li className="hover-intreset">{interest1}</li>;
     });
@@ -59,6 +73,13 @@ class UserProfilePage extends Component {
     return (
       <div className="user-wrapper">
         <div className="user">
+          <Modal
+            isOpen={editingProfile}
+            onRequestClose={this.toggleEditor}
+            contentLabel="Edit profile"
+          >
+            <UserForm user={user} />
+          </Modal>
           <img
             className="user-image"
             src={"https://api.adorable.io/avatars/285"}
@@ -79,7 +100,7 @@ class UserProfilePage extends Component {
             className="user-edit-buttom"
             src={EditButtom}
             alt="Edit buttom"
-            onClick={this.handleEditClick.bind(this)}
+            onClick={this.toggleEditor}
           />
         </div>
         <h3 className="user-title3">Bio</h3>
@@ -111,5 +132,9 @@ class UserProfilePage extends Component {
     }
   }
 }
+
+UserProfilePage.propTypes = {
+  user: PropTypes.instanceOf(User).isRequired
+};
 
 export default UserProfilePage;
