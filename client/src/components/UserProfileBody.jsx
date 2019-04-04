@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 import UserForm from "./UserForm";
 import User from "../models/User";
+import { Button, Icon } from "evergreen-ui";
 
 import Rating from "../components/SkillRating";
-import EditButtom from "../assets/images/edit.png";
 
 import "../assets/css/user-profile-body.css";
 
@@ -24,6 +24,7 @@ class UserProfilePage extends Component {
 
   toggleEditor = () => {
     this.setState(prevState => ({ editProfile: !prevState.editProfile }));
+    console.log("it works");
   };
 
   //handleEditClick = () => this.setState({ editProfile: true });
@@ -80,6 +81,14 @@ class UserProfilePage extends Component {
           >
             <UserForm user={user} />
           </Modal>
+
+          <Button
+            iconBefore="edit"
+            className="profile__edit"
+            onClick={this.toggleEditor}
+          >
+            Edit your profile
+          </Button>
           <img
             className="user-image"
             src={"https://api.adorable.io/avatars/285"}
@@ -96,12 +105,6 @@ class UserProfilePage extends Component {
         <div className="user-title">
           <h3 className="user-title1">Campus</h3>
           <h3 className="user-title2">{userprofile.campus}</h3>
-          <img
-            className="user-edit-buttom"
-            src={EditButtom}
-            alt="Edit buttom"
-            onClick={this.toggleEditor}
-          />
         </div>
         <h3 className="user-title3">Bio</h3>
         <p className="user-description">{userprofile.bio}</p>

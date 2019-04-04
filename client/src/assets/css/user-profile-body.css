@@ -63,11 +63,10 @@
   color: #00bc66;
 }
 
-.user-edit-buttom {
-  max-width: 30px;
-  max-height: 30px;
-  margin-top: 4.5%;
-  margin-left: 63%;
+.profile__edit {
+  position: relative;
+  top: 0;
+  right: 0;
 }
 
 .user-title3 {
