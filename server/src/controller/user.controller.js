@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 const User = require("../model/user.model");
 
 exports.findAll = (req, res) => {
@@ -71,17 +72,19 @@ exports.search = (req, res) => {
 
 exports.register = (req, res) => {
   //TODO definte all the validations (1.23m)
-
-  const user = new User(req.body);
-  user.save().then(() => {
-    //TODO send email
-    //then
-    res.status(201).send({
-      message: "Your account has been created"
+  const { password } = req.body;
+  bcrypt
+    .hash(password, 10)
+    .then(hash => {
+      const user = new User({
+        ...req.body,
+        password: hash
+      });
+      return user.save();
+    })
+    .then(user => {
+      res.status(201).send({
+        message: "Your account has been created"
+      });
     });
-  });
-};
-
-exports.login = (req, res) => {
-  console.log(req.body);
 };
