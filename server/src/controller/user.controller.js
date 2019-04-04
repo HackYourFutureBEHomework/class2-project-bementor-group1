@@ -1,5 +1,12 @@
 const bcrypt = require("bcrypt");
 const User = require("../model/user.model");
+const jwt = require("jsonwebtoken");
+
+const { JWT_SECRET } = process.env;
+
+const generateJWT = payload => {
+  return jwt.sign(payload, JWT_SECRET, { expiresIn: "2 days" });
+};
 
 exports.findAll = (req, res) => {
   User.find()
@@ -102,5 +109,9 @@ exports.login = (req, res) => {
           message: "Incorrect email or password."
         });
       }
+      return generateJWT({ _id: foundUser._id });
+    })
+    .then(token => {
+      console.log(token);
     });
 };
