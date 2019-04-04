@@ -97,9 +97,11 @@ exports.register = (req, res) => {
 };
 
 exports.login = (req, res) => {
+  let foundUser = null;
   User.findOne({ email: req.body.email })
     .select("+password")
     .then(user => {
+      foundUser = user;
       const storedHash = user.password;
       return bcrypt.compare(req.body.password, storedHash);
     })
@@ -112,6 +114,9 @@ exports.login = (req, res) => {
       return generateJWT({ _id: foundUser._id });
     })
     .then(token => {
-      console.log(token);
+      res.status(500).send({
+        token,
+        message: "Logged successfully"
+      });
     });
 };
