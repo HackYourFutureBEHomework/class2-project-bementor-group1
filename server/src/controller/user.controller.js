@@ -69,6 +69,19 @@ exports.search = (req, res) => {
     });
 };
 
+exports.register = (req, res) => {
+  //TODO definte all the validations (1.23m)
+
+  const user = new User(req.body);
+  user.save().then(() => {
+    //TODO send email
+    //then
+    res.status(201).send({
+      message: "Your account has been created"
+    });
+  });
+};
+
 exports.login = (req, res) => {
   console.log(req.body);
 };
