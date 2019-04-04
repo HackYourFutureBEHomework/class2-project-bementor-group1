@@ -8,6 +8,10 @@ const generateJWT = payload => {
   return jwt.sign(payload, JWT_SECRET, { expiresIn: "2 days" });
 };
 
+const verifyJWT = token => {
+  return jwt.verify(token, JWT_SECRET);
+};
+
 exports.findAll = (req, res) => {
   User.find()
     .then(users => {
@@ -50,6 +54,17 @@ exports.delete = (req, res) => {
 };
 
 exports.update = (req, res) => {
+  if (!req.body.token)
+    return res
+      .status(401)
+      .send({ message: "You need to log in to edit your profile" });
+  const decoded = verifyJWT(req.body.token);
+  if (!decoded) return res.status(401).send({ message: "Not authorized" });
+
+  const { id } = req.params;
+  if (decoded._id !== id) {
+    return res.status(403).send({ message: "You're not who you say you are" });
+  }
   User.findByIdAndUpdate(
     { _id: req.params.id },
     {
