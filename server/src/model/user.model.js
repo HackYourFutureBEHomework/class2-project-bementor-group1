@@ -12,25 +12,23 @@ const usersSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: true
+      required: true,
+      select: false
     },
     password: {
       select: false,
       type: String,
       required: true
     },
-    img: {
-      type: String
+    bio: {
+      type: String,
+      required: true
     },
     tagLine: {
       type: String,
       required: true
     },
     campus: {
-      type: String,
-      required: true
-    },
-    bio: {
       type: String,
       required: true
     },
