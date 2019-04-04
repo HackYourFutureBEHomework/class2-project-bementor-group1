@@ -88,3 +88,11 @@ exports.register = (req, res) => {
       });
     });
 };
+
+exports.login = (req, res) => {
+  User.findOne({ email: req.body.email }).then(user => {
+    bcrypt.compare(myPlaintextPassword, hash).then(function(res) {
+      // res == true
+    });
+  });
+};
