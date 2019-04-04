@@ -10,8 +10,9 @@ const usersSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    img: {
-      type: String
+    bio: {
+      type: String,
+      required: true
     },
     tagLine: {
       type: String,
@@ -21,10 +22,7 @@ const usersSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    bio: {
-      type: String,
-      required: true
-    },
+
     interests: {
       type: [String],
       required: true
@@ -54,6 +52,5 @@ usersSchema.index({
   interests: "text",
   skills: "text"
 });
-
 
 module.exports = mongoose.model("User", usersSchema);
