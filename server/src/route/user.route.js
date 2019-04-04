@@ -7,4 +7,5 @@ module.exports = app => {
   app.get("/api/user/:id", users.find);
   app.patch("/api/user/:id", users.update);
   app.delete("/api/user/:id", users.delete);
+  app.post("/api/user/login", users.login);
 };
