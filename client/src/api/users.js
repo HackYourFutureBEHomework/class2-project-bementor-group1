@@ -8,4 +8,19 @@ export const searchUsers = query => {
   return fetch(`${API_URL}/api/user/search?text=${query}`).then(response =>
     response.json()
   );
+
+  
+  // for login page
+
+export const loginuser = (fname, lname, email, pword) => {
+  return fetch(`${API_URL}/user/login`, {
+    method: "POST",
+    body: JSON.stringify({
+      firstname: fname,
+      lastname: lname,
+      email: email,
+      password: pword
+    }),
+    headers: { "Content-Type": "application/json" }
+  }).then(response => response.json());
 };
