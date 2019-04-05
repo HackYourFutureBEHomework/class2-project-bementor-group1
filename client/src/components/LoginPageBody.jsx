@@ -1,6 +1,13 @@
 import React, { Component } from "react";
+//import { loginUsers } from "../api/users";
 
 import "../assets/css/login-page.css";
+
+import { loginuser } from "../api/users";
+
+const emailRegex = RegExp(
+  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+);
 
 class LoginPageBody extends Component {
   constructor(props) {
@@ -18,80 +25,81 @@ class LoginPageBody extends Component {
       }
     };
   }
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
+
     if (
       this.state.loginErrors.firstname.length === 0 &&
       this.state.loginErrors.lastname.length === 0 &&
       this.state.loginErrors.email.length === 0 &&
       this.state.loginErrors.password.length === 0
-      ) {
-      console.log(" First Name: ", this.state.firstname);
-      console.log(" last Name: ", this.state.lastname);
-      console.log(" password : ", this.state.password);
-      console.log(" email : ", this.state.email);
-      
+    ) {
+      console.log("        First Name: ", this.state.firstname);
+      console.log("        last Name: ", this.state.lastname);
+      console.log("        password : ", this.state.password);
+      console.log("        email : ", this.state.email);
+
       const fname = this.state.firstname;
       const lname = this.state.lastname;
       const email = this.state.email;
       const pword = this.state.password;
-      
+
       const loginresult = await loginuser(fname, lname, email, pword);
-      
+
       console.log("loginresult", loginresult);
-      } else {
+    } else {
       console.error(
-      "FORM INVALID - DISPLAY ERROR MESSAGE",
-      this.state.loginErrors
+        "FORM INVALID - DISPLAY ERROR MESSAGE",
+        this.state.loginErrors
       );
-      }
+    }
   };
 
   handleChange = e => {
     e.preventDefault();
     const { name, value } = e.target;
     let loginErrors = this.state.loginErrors;
-    
+
     switch (name) {
-    case "firstname":
-    loginErrors.firstname =
-    value.length < 3 ? "minimum 3 characaters required" : "";
-    this.setState({
-    firstname: value
-    });
-    
-    break;
-    case "lastname":
-    loginErrors.lastname =
-    value.length < 3 ? "minimum 3 characaters required" : "";
-    this.setState({
-    lastname: value
-    });
-    break;
-    case "email":
-    loginErrors.email =
-    emailRegex.test(value) && value.length > 0
-    ? ""
-    : "invalid email address";
-    this.setState({
-    email: value
-    });
-    break;
-    case "password":
-    loginErrors.password =
-    value.length < 6 ? "minimum 6 characaters required" : "";
-    this.setState({
-    password: value
-    });
-    break;
-    default:
-    break;
+      case "firstname":
+        loginErrors.firstname =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        this.setState({
+          firstname: value
+        });
+
+        break;
+      case "lastname":
+        loginErrors.lastname =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        this.setState({
+          lastname: value
+        });
+        break;
+      case "email":
+        loginErrors.email =
+          emailRegex.test(value) && value.length > 0
+            ? ""
+            : "invalid email address";
+        this.setState({
+          email: value
+        });
+        break;
+      case "password":
+        loginErrors.password =
+          value.length < 6 ? "minimum 6 characaters required" : "";
+        this.setState({
+          password: value
+        });
+        break;
+      default:
+        break;
     }
-    
+
     this.setState({ loginErrors, [name]: value }, () =>
-    console.log(this.state)
+      console.log(this.state)
     );
-    };
+  };
   render() {
     return (
       <div className="wrapper-login">
