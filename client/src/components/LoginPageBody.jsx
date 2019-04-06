@@ -47,6 +47,20 @@ class LoginPageBody extends Component {
       const loginresult = await loginuser(fname, lname, email, pword);
 
       console.log("loginresult", loginresult);
+
+      //const userid = "5ca79d9f4215f93d26bdc70e";
+      // redirect
+      //let redirectUser = "/userprofile/" + userid;
+      //console.log("redirectUser", redirectUser);
+      /*this.props.history.push({
+        pathname: redirectUser
+      });*/
+
+      //push({ redirectUser }); // navigate to some route
+      //return <Redirect to={redirectUser} />;
+      //browserHistory.push(redirectUser);
+
+      //this.props.history.push(redirectUser);
     } else {
       console.error(
         "FORM INVALID - DISPLAY ERROR MESSAGE",
@@ -61,7 +75,7 @@ class LoginPageBody extends Component {
     let loginErrors = this.state.loginErrors;
 
     switch (name) {
-      case "firstname":
+      /* case "firstname":
         loginErrors.firstname =
           value.length < 3 ? "minimum 3 characaters required" : "";
         this.setState({
@@ -75,7 +89,7 @@ class LoginPageBody extends Component {
         this.setState({
           lastname: value
         });
-        break;
+        break;*/
       case "email":
         loginErrors.email =
           emailRegex.test(value) && value.length > 0
@@ -105,7 +119,7 @@ class LoginPageBody extends Component {
       <div className="wrapper-login">
         <div className="form-wrapper-login">
           <h1 className="login-title">Login</h1>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit.bind(this)}>
             <div className="login-firstname">
               <label htmlFor="name">Firstname</label>
               <input

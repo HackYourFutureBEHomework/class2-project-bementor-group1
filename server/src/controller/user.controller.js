@@ -1,6 +1,8 @@
 const User = require("../model/user.model");
 
 exports.findAll = (req, res) => {
+  //console.log("req", req);
+  // console.log("cookies", req.cookies);
   User.find()
     .then(users => {
       res.send(users);
@@ -68,3 +70,4 @@ exports.search = (req, res) => {
       });
     });
 };
+// for login....

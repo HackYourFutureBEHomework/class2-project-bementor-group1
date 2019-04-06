@@ -10,6 +10,14 @@ const usersSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    email: {
+      type: String,
+      required: true
+    },
+    password: {
+      type: String,
+      required: true
+    },
     img: {
       type: String
     },
@@ -54,6 +62,5 @@ usersSchema.index({
   interests: "text",
   skills: "text"
 });
-
 
 module.exports = mongoose.model("User", usersSchema);
