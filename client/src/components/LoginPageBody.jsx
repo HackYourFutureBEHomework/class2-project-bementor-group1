@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-//import { loginUsers } from "../api/users";
-
-import "../assets/css/login-page.css";
-
 import { loginuser } from "../api/users";
+//import { loginUsers } from "../api/users";
+import { Redirect } from "react-router-dom";
+import "../assets/css/login-page.css";
 
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -22,7 +21,9 @@ class LoginPageBody extends Component {
         lastname: "",
         email: "",
         password: ""
-      }
+      },
+      redirect: false,
+      redirectUrl: ""
     };
   }
   handleSubmit = async e => {
@@ -34,10 +35,10 @@ class LoginPageBody extends Component {
       this.state.loginErrors.email.length === 0 &&
       this.state.loginErrors.password.length === 0
     ) {
-      console.log("        First Name: ", this.state.firstname);
-      console.log("        last Name: ", this.state.lastname);
-      console.log("        password : ", this.state.password);
-      console.log("        email : ", this.state.email);
+      //console.log("        First Name: ", this.state.firstname);
+      //console.log("        last Name: ", this.state.lastname);
+      //console.log("        password : ", this.state.password);
+      //console.log("        email : ", this.state.email);
 
       const fname = this.state.firstname;
       const lname = this.state.lastname;
@@ -46,21 +47,21 @@ class LoginPageBody extends Component {
 
       const loginresult = await loginuser(fname, lname, email, pword);
 
-      console.log("loginresult", loginresult);
+      //console.log("loginresult", loginresult);
 
-      //const userid = "5ca79d9f4215f93d26bdc70e";
-      // redirect
-      //let redirectUser = "/userprofile/" + userid;
-      //console.log("redirectUser", redirectUser);
-      /*this.props.history.push({
-        pathname: redirectUser
-      });*/
-
-      //push({ redirectUser }); // navigate to some route
-      //return <Redirect to={redirectUser} />;
-      //browserHistory.push(redirectUser);
-
-      //this.props.history.push(redirectUser);
+      // redirect to users page
+      if (loginresult.success === true) {
+        let redirectUser = "/userprofile/" + loginresult._id;
+        this.setState({
+          redirect: true,
+          redirectUrl: redirectUser
+        });
+      } else {
+        this.setState({
+          redirect: true,
+          redirectUrl: "/LoginFailed"
+        });
+      }
     } else {
       console.error(
         "FORM INVALID - DISPLAY ERROR MESSAGE",
@@ -75,21 +76,6 @@ class LoginPageBody extends Component {
     let loginErrors = this.state.loginErrors;
 
     switch (name) {
-      /* case "firstname":
-        loginErrors.firstname =
-          value.length < 3 ? "minimum 3 characaters required" : "";
-        this.setState({
-          firstname: value
-        });
-
-        break;
-      case "lastname":
-        loginErrors.lastname =
-          value.length < 3 ? "minimum 3 characaters required" : "";
-        this.setState({
-          lastname: value
-        });
-        break;*/
       case "email":
         loginErrors.email =
           emailRegex.test(value) && value.length > 0
@@ -115,6 +101,9 @@ class LoginPageBody extends Component {
     );
   };
   render() {
+    if (this.state.redirect === true) {
+      return <Redirect to={this.state.redirectUrl} />;
+    }
     return (
       <div className="wrapper-login">
         <div className="form-wrapper-login">
