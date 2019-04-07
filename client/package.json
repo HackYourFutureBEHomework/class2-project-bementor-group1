@@ -8,7 +8,13 @@
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-router": "^5.0.0",
-    "react-scripts": "^2.1.5"
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "^2.1.5",
+    "@fortawesome/fontawesome-svg-core": "^1.2.15",
+    "@fortawesome/free-brands-svg-icons": "^5.7.2",
+    "@fortawesome/free-regular-svg-icons": "^5.7.2",
+    "@fortawesome/free-solid-svg-icons": "^5.7.2",
+    "@fortawesome/react-fontawesome": "^0.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -22,11 +28,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "devDependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.15",
-    "@fortawesome/free-brands-svg-icons": "^5.7.2",
-    "@fortawesome/free-regular-svg-icons": "^5.7.2",
-    "@fortawesome/free-solid-svg-icons": "^5.7.2",
-    "@fortawesome/react-fontawesome": "^0.1.4"
-  }
+  "devDependencies": {}
 }
