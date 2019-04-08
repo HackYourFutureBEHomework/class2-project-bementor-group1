@@ -1,5 +1,10 @@
 const User = require("../model/user.model");
 
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+const { JWT_SECRET } = process.env;
+
 exports.findAll = (req, res) => {
   User.find()
     .then(users => {
@@ -67,4 +72,73 @@ exports.search = (req, res) => {
         message: err.message
       });
     });
+};
+// for registor
+exports.register = (req, res) => {
+  const { password } = req.body;
+  bcrypt
+    .hash(password, 10)
+    .then(hash => {
+      const user = new User({
+        ...req.body,
+        password: hash
+      });
+      return user.save();
+    })
+    .then(user => {
+      res.status(201).send({
+        message: "Your account has been created"
+      });
+    });
+};
+///////////////////////
+//for login
+exports.querylogin = (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  User.findOne({ email }).then(user => {
+    if (!user) {
+      return res.status(404).json({ emailnotfound: "Email not found" });
+    }
+    if (user.firstName != req.body.firstname) {
+      return res
+        .status(404)
+        .json({ firstnamenotfound: "firstname not matched" });
+    }
+    if (user.lastName != req.body.lastname) {
+      return res.status(404).json({ lastnamenotfound: "lastname not matched" });
+    }
+
+    // check password
+    bcrypt.compare(password, user.password).then(matchresult => {
+      if (matchresult) {
+        // Create JWT Payload
+        const payload = {
+          id: user.id,
+          name: user.name
+        };
+
+        //// Sign token
+        jwt.sign(
+          payload,
+          JWT_SECRET,
+          {
+            expiresIn: "2 days"
+          },
+          (err, token) => {
+            res.json({
+              success: true,
+              _id: user._id,
+              token: "manju" + token
+            });
+          }
+        );
+      } else {
+        return res
+          .status(400)
+          .json({ passwordincorrect: "Password incorrect" });
+      }
+    });
+  });
 };
