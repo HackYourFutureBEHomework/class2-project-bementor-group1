@@ -97,6 +97,9 @@ exports.querylogin = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
+  const incomingcookie = req.cookie;
+  console.log("incomingcookie", incomingcookie);
+
   User.findOne({ email }).then(user => {
     if (!user) {
       return res.status(404).json({ emailnotfound: "Email not found" });
@@ -130,8 +133,20 @@ exports.querylogin = (req, res) => {
             res.json({
               success: true,
               _id: user._id,
-              token: "manju" + token
+              token: "%$%#&$" + token
             });
+            console.log("token", token);
+
+            //console.log(err);
+            res.cookie("token", token, {
+              maxAge: 1000 * 60 * 10,
+              httpOnly: true
+            });
+            //console.log("res:", res);
+            //console.log("res.cookie:", res.cookie);
+            //res.cookie("token", "token");
+            //console.log("res.cookie:", res.cookie);
+            //console.log("token1212", token);
           }
         );
       } else {

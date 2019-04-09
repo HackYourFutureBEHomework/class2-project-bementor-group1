@@ -23,29 +23,29 @@ const usersSchema = new mongoose.Schema(
     },
     tagLine: {
       type: String,
-      required: true
+      required: false
     },
     campus: {
       type: String,
-      required: true
+      required: false
     },
     bio: {
       type: String,
-      required: true
+      required: false
     },
     interests: {
       type: [String],
-      required: true
+      required: false
     },
     skills: {
       type: [Object],
       required: true
     },
-    mentorStatus: {
+    userStatus: {
       type: Boolean,
       default: false
     },
-    menteeStatus: {
+    userStatus: {
       type: Boolean,
       default: false
     }

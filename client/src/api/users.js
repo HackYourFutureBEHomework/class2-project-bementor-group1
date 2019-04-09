@@ -21,6 +21,9 @@ export const loginuser = (fname, lname, email, pword) => {
       email: email,
       password: pword
     }),
+    credentials: "include",
     headers: { "Content-Type": "application/json" }
   }).then(response => response.json());
 };
+
+// for registration
