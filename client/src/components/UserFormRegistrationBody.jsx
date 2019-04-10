@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../assets/css/registration-form.css";
-//import { loginuser } from "../api/users";
+import { Redirect } from "react-router-dom";
+import { userRegistration } from "../api/users";
 
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -10,10 +11,11 @@ class UserFormRegistrationBody extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: null,
-      lastname: null,
-      email: null,
+      firstName: "",
+      lastName: "",
+      email: "",
       password: null,
+      cpassword: null,
       registrationErrors: {
         firstname: "",
         lastname: "",
@@ -25,7 +27,10 @@ class UserFormRegistrationBody extends Component {
       img: "",
       tagline: "",
       campus: "",
-      userStaus: ""
+      userStatus: "",
+      redirect: false,
+      redirectUrl: "",
+      registrationFail: ""
     };
   }
 
@@ -38,19 +43,48 @@ class UserFormRegistrationBody extends Component {
       this.state.registrationErrors.email.length === 0 &&
       this.state.registrationErrors.password.length === 0
     ) {
-      console.log(" First Name: ", this.state.firstname);
-      console.log(" last Name: ", this.state.lastname);
+      console.log(" First Name: ", this.state.firstName);
+      console.log(" last Name: ", this.state.lastName);
       console.log(" password : ", this.state.password);
       console.log(" email : ", this.state.email);
-
-      const fname = this.state.firstname;
-      const lname = this.state.lastname;
+      const fname = this.state.firstName;
+      const lname = this.state.lastName;
       const email = this.state.email;
       const pword = this.state.password;
+      const bio = this.state.bio;
+      const img = this.state.img;
+      const tagline = this.state.tagline;
+      const interest = this.state.interest;
+      const campus = this.state.campus;
+      const userStatus = this.state.userStatus;
 
-      //const registrationresult = await loginuser(fname, lname, email, pword);
+      const registrationResult = await userRegistration(
+        fname,
+        lname,
+        email,
+        pword,
+        bio,
+        img,
+        interest,
+        tagline,
+        campus,
+        userStatus
+      );
 
-      //console.log("registrationresult", registrationresult);
+      if (registrationResult.success === true) {
+        let redirectUser = "/userprofile/" + registrationResult._id;
+        this.setState({
+          redirect: true,
+          redirectUrl: redirectUser
+        });
+      } else {
+        this.setState({
+          registrationFail: registrationResult.error
+        });
+
+        console.log("erroe while registration");
+      }
+      console.log("registrationresult", registrationResult);
     } else {
       console.error(
         "FORM INVALID - DISPLAY ERROR MESSAGE",
@@ -59,6 +93,14 @@ class UserFormRegistrationBody extends Component {
     }
   };
 
+  handleLogin = e => {
+    e.preventDefault();
+    let redirectLogin = "/Login";
+    this.setState({
+      redirect: true,
+      redirectUrl: redirectLogin
+    });
+  };
   handleChange = e => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -69,7 +111,7 @@ class UserFormRegistrationBody extends Component {
         registrationErrors.firstname =
           value.length < 3 ? "minimum 3 characaters required" : "";
         this.setState({
-          firstname: value
+          firstName: value
         });
 
         break;
@@ -77,7 +119,7 @@ class UserFormRegistrationBody extends Component {
         registrationErrors.lastname =
           value.length < 3 ? "minimum 3 characaters required" : "";
         this.setState({
-          lastname: value
+          lastName: value
         });
         break;
       case "email":
@@ -90,10 +132,45 @@ class UserFormRegistrationBody extends Component {
         });
         break;
       case "password":
+        if (value.length < 6) {
+          registrationErrors.password = "minimum 6 characaters required";
+        } else {
+          if (this.state.cpassword !== value) {
+            registrationErrors.password = "password does not matched";
+          } else {
+            registrationErrors.password = "";
+          }
+        }
+        /*
         registrationErrors.password =
-          value.length < 6 ? "minimum 6 characaters required" : "";
+          value.length < 6 || this.state.cpassword !== value
+            ? "password does not matched"
+            : "";*/
         this.setState({
           password: value
+        });
+        break;
+      case "cpassword":
+        if (value.length < 6) {
+          registrationErrors.password = "minimum 6 characaters required";
+        } else {
+          if (this.state.password !== value) {
+            registrationErrors.password = "password does not matched";
+          } else {
+            registrationErrors.password = "";
+          }
+        }
+        /* registrationErrors.password =
+          value.length < 6 || this.state.password !== value
+            ? "password does not matched"
+            : "";*/
+        this.setState({
+          cpassword: value
+        });
+        break;
+      case "userStatus":
+        this.setState({
+          userStatus: value
         });
         break;
       default:
@@ -105,11 +182,15 @@ class UserFormRegistrationBody extends Component {
     );
   };
   render() {
+    let { registrationErrors, registrationFail } = this.state;
+    if (this.state.redirect === true) {
+      return <Redirect to={this.state.redirectUrl} />;
+    }
     return (
       <div className="wrapper-Registration">
         <div className="form-wrapper-Registration">
           <h1 className="Registration-title">Registration From</h1>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit.bind(this)}>
             <div className="Registration-firstname">
               <label htmlFor="name">Firstname</label>
               <input
@@ -118,15 +199,25 @@ class UserFormRegistrationBody extends Component {
                 name="firstname"
                 onChange={this.handleChange}
               />
+              {registrationErrors.firstname.length > 0 && (
+                <span className="errorMessage">
+                  {registrationErrors.firstname}
+                </span>
+              )}
             </div>
             <div className="Registration-lastname">
-              <label htmlFor="name">Lasttname</label>
+              <label htmlFor="name">Lastname</label>
               <input
                 type="text"
                 placeholder="user lastname "
                 name="lastname"
                 onChange={this.handleChange}
               />
+              {registrationErrors.lastname.length > 0 && (
+                <span className="errorMessage">
+                  {registrationErrors.lastname}
+                </span>
+              )}
             </div>
             <div className="Registration-email">
               <label htmlFor="email">Email</label>
@@ -136,6 +227,9 @@ class UserFormRegistrationBody extends Component {
                 name="email"
                 onChange={this.handleChange}
               />
+              {registrationErrors.email.length > 0 && (
+                <span className="errorMessage">{registrationErrors.email}</span>
+              )}
             </div>
             <div className="Registration-password">
               <label htmlFor="password">Password</label>
@@ -145,11 +239,55 @@ class UserFormRegistrationBody extends Component {
                 name="password"
                 onChange={this.handleChange}
               />
+              {registrationErrors.password.length > 0 && (
+                <span className="errorMessage">
+                  {registrationErrors.password}
+                </span>
+              )}
             </div>
-            <div>
-              <button type="button-Login" className="Registration-button">
-                Login
-              </button>
+            <div className="Registration-password">
+              <label htmlFor="password">Confirm Password</label>
+              <input
+                type="password"
+                placeholder="password*** "
+                name="cpassword"
+                onChange={this.handleChange}
+              />
+              {registrationErrors.password.length > 0 && (
+                <span className="errorMessage">
+                  {registrationErrors.password}
+                </span>
+              )}
+            </div>
+            <div className="radio">
+              <label>
+                <input
+                  type="radio"
+                  name="userStatus"
+                  value="mentor"
+                  onChange={this.handleChange}
+                />
+                mentor
+              </label>
+            </div>
+            <div className="radio">
+              <label>
+                <input
+                  type="radio"
+                  name="userStatus"
+                  value="mentee"
+                  onChange={this.handleChange}
+                />
+                mentee
+              </label>
+            </div>
+            <div className="createAccount">
+              <button type="submit">Create Account</button>
+              {registrationFail.length > 0 && (
+                <span className="errorMessage">{registrationFail}</span>
+              )}
+              <small>Already Registered ? </small>
+              <button onClick={this.handleLogin.bind(this)}>Login</button>
             </div>
           </form>
         </div>

@@ -50,12 +50,40 @@ input::placeholder {
   color: #999;
 }
 
-.login-firstname,
-.login-lastname,
 .login-password,
 .login-email {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
   width: 100%;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.75em;
+  display: relative;
+}
+
+input.error {
+  border: 1px solid red;
+}
+
+.login-button button {
+  background-color: #519e8a;
+  color: #fff;
+  border: 2px solid #fff;
+  width: 100%;
+  margin-top: 1em;
+  padding: 8px 0px;
+  font-size: 1em;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  margin-bottom: 0.25em;
+  justify-content: center;
+}
+
+.login-button button:hover {
+  color: #519e8a;
+  background-color: #fff;
+  border: 2px solid #519e8a;
 }

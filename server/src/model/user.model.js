@@ -39,14 +39,10 @@ const usersSchema = new mongoose.Schema(
     },
     skills: {
       type: [Object],
-      required: true
+      required: false
     },
     userStatus: {
-      type: Boolean,
-      default: false
-    },
-    userStatus: {
-      type: Boolean,
+      type: [String],
       default: false
     }
   },

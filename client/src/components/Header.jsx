@@ -26,7 +26,7 @@ class Header extends Component {
               </a>
             </li>
             <li className="header-nav-button">
-              <a href="Registration" title="Registration">
+              <a href="/Registration" title="Registration">
                 Registration
               </a>
             </li>

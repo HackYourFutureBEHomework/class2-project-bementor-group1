@@ -76,6 +76,13 @@ exports.search = (req, res) => {
 // for registor
 exports.register = (req, res) => {
   const { password } = req.body;
+  const email = req.body.email;
+
+  User.findOne({ email }).then(user => {
+    if (user) {
+      return res.status(404).json({ error: "Email already existing" });
+    }
+  });
   bcrypt
     .hash(password, 10)
     .then(hash => {
@@ -87,6 +94,8 @@ exports.register = (req, res) => {
     })
     .then(user => {
       res.status(201).send({
+        success: true,
+        _id: user._id,
         message: "Your account has been created"
       });
     });
@@ -104,14 +113,14 @@ exports.querylogin = (req, res) => {
     if (!user) {
       return res.status(404).json({ emailnotfound: "Email not found" });
     }
-    if (user.firstName != req.body.firstname) {
+    /* if (user.firstName != req.body.firstname) {
       return res
         .status(404)
         .json({ firstnamenotfound: "firstname not matched" });
     }
     if (user.lastName != req.body.lastname) {
       return res.status(404).json({ lastnamenotfound: "lastname not matched" });
-    }
+    }*/
 
     // check password
     bcrypt.compare(password, user.password).then(matchresult => {
@@ -130,23 +139,16 @@ exports.querylogin = (req, res) => {
             expiresIn: "2 days"
           },
           (err, token) => {
-            res.json({
-              success: true,
-              _id: user._id,
-              token: "%$%#&$" + token
-            });
-            console.log("token", token);
-
-            //console.log(err);
             res.cookie("token", token, {
               maxAge: 1000 * 60 * 10,
               httpOnly: true
             });
-            //console.log("res:", res);
-            //console.log("res.cookie:", res.cookie);
-            //res.cookie("token", "token");
-            //console.log("res.cookie:", res.cookie);
-            //console.log("token1212", token);
+
+            res.json({
+              success: true,
+              _id: user._id
+            });
+            console.log("token", token);
           }
         );
       } else {
