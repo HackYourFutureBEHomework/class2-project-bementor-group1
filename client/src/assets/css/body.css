@@ -1,0 +1,14 @@
+.main-backgroud {
+  width: 100%;
+  height: 100%;
+}
+
+.main-backgroud {
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/MainImage.png);
+  background-size: cover;
+  background-position: center center;
+  z-index: -1;
+  position: inherit;
+}
