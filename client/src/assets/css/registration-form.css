@@ -74,7 +74,7 @@ input.error {
 }
 
 .createAccount button {
-  background-color: #519e8a;
+  background-color: #00bc66;
   color: #fff;
   border: 2px solid #fff;
   width: 100%;
@@ -87,7 +87,7 @@ input.error {
 }
 
 .createAccount button:hover {
-  color: #519e8a;
+  color: #00bc66;
   background-color: #fff;
-  border: 2px solid #519e8a;
+  border: 2px solid #00bc66;
 }

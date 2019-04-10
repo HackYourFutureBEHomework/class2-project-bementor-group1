@@ -56,7 +56,12 @@ class Mentors extends Component {
 
   renderProfile(searchProfile) {
     let shortBio = searchProfile.bio;
-    shortBio = shortBio.substring(0, 20) + "...";
+
+    if (shortBio) {
+      shortBio = shortBio.substring(0, 20) + "...";
+    } else {
+      console.log("bio is not available");
+    }
 
     return (
       <div

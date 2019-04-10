@@ -53,8 +53,6 @@ class LoginPageBody extends Component {
 
       const loginresult = await loginuser(fname, lname, email, pword);
 
-      //console.log("loginresult", loginresult);
-
       // redirect to users page
       if (loginresult.success === true) {
         let redirectUser = "/userprofile/" + loginresult._id;
@@ -105,13 +103,12 @@ class LoginPageBody extends Component {
         break;
     }
 
-    this.setState({ loginErrors, [name]: value }, () =>
-      console.log(this.state)
-    );
+    /*this.setState({ loginErrors, [name]: value }, () =>
+      console.log(this.state)*/
+    this.setState({ loginErrors, [name]: value });
   };
   render() {
     let { loginErrors, auth } = this.state;
-    console.log("this.state auth", this.state);
     if (this.state.redirect === true) {
       return <Redirect to={this.state.redirectUrl} />;
     }

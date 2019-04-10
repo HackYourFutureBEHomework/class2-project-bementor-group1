@@ -80,7 +80,7 @@ exports.register = (req, res) => {
 
   User.findOne({ email }).then(user => {
     if (user) {
-      return res.status(404).json({ error: "Email already existing" });
+      return res.status(404).json({ error: "Email already existing....    " });
     }
   });
   bcrypt
@@ -96,7 +96,7 @@ exports.register = (req, res) => {
       res.status(201).send({
         success: true,
         _id: user._id,
-        message: "Your account has been created"
+        message: "Your account has been created successfully.... "
       });
     });
 };

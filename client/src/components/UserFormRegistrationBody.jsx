@@ -22,11 +22,6 @@ class UserFormRegistrationBody extends Component {
         email: "",
         password: ""
       },
-      bio: "",
-      interest: "",
-      img: "",
-      tagline: "",
-      campus: "",
       userStatus: "",
       redirect: false,
       redirectUrl: "",
@@ -36,6 +31,17 @@ class UserFormRegistrationBody extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
+    // fields check
+    if (
+      this.state.firstName.length === 0 ||
+      this.state.lastName.length === 0 ||
+      this.state.email === 0 ||
+      this.state.password === 0
+    ) {
+      this.setState({
+        registrationFail: "please fill the required fields....  "
+      });
+    }
 
     if (
       this.state.registrationErrors.firstname.length === 0 &&
@@ -43,19 +49,15 @@ class UserFormRegistrationBody extends Component {
       this.state.registrationErrors.email.length === 0 &&
       this.state.registrationErrors.password.length === 0
     ) {
-      console.log(" First Name: ", this.state.firstName);
-      console.log(" last Name: ", this.state.lastName);
-      console.log(" password : ", this.state.password);
-      console.log(" email : ", this.state.email);
       const fname = this.state.firstName;
       const lname = this.state.lastName;
       const email = this.state.email;
       const pword = this.state.password;
-      const bio = this.state.bio;
+      /*const bio = this.state.bio;
       const img = this.state.img;
       const tagline = this.state.tagline;
       const interest = this.state.interest;
-      const campus = this.state.campus;
+      const campus = this.state.campus;*/
       const userStatus = this.state.userStatus;
 
       const registrationResult = await userRegistration(
@@ -63,20 +65,18 @@ class UserFormRegistrationBody extends Component {
         lname,
         email,
         pword,
-        bio,
-        img,
-        interest,
-        tagline,
-        campus,
         userStatus
       );
 
       if (registrationResult.success === true) {
-        let redirectUser = "/userprofile/" + registrationResult._id;
+        this.setState({
+          registrationFail: registrationResult.message
+        });
+        /*let redirectUser = "/userprofile/" + registrationResult._id;
         this.setState({
           redirect: true,
           redirectUrl: redirectUser
-        });
+        });*/
       } else {
         this.setState({
           registrationFail: registrationResult.error
@@ -141,11 +141,6 @@ class UserFormRegistrationBody extends Component {
             registrationErrors.password = "";
           }
         }
-        /*
-        registrationErrors.password =
-          value.length < 6 || this.state.cpassword !== value
-            ? "password does not matched"
-            : "";*/
         this.setState({
           password: value
         });
@@ -160,10 +155,6 @@ class UserFormRegistrationBody extends Component {
             registrationErrors.password = "";
           }
         }
-        /* registrationErrors.password =
-          value.length < 6 || this.state.password !== value
-            ? "password does not matched"
-            : "";*/
         this.setState({
           cpassword: value
         });
@@ -177,9 +168,10 @@ class UserFormRegistrationBody extends Component {
         break;
     }
 
-    this.setState({ registrationErrors, [name]: value }, () =>
+    this.setState({ registrationErrors, [name]: value });
+    /*this.setState({ registrationErrors, [name]: value }, () =>
       console.log(this.state)
-    );
+    );*/
   };
   render() {
     let { registrationErrors, registrationFail } = this.state;
@@ -192,7 +184,7 @@ class UserFormRegistrationBody extends Component {
           <h1 className="Registration-title">Registration From</h1>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div className="Registration-firstname">
-              <label htmlFor="name">Firstname</label>
+              <label htmlFor="name">Firstname*</label>
               <input
                 type="text"
                 placeholder="user firstname "
@@ -206,7 +198,7 @@ class UserFormRegistrationBody extends Component {
               )}
             </div>
             <div className="Registration-lastname">
-              <label htmlFor="name">Lastname</label>
+              <label htmlFor="name">Lastname*</label>
               <input
                 type="text"
                 placeholder="user lastname "
@@ -220,7 +212,7 @@ class UserFormRegistrationBody extends Component {
               )}
             </div>
             <div className="Registration-email">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email*</label>
               <input
                 type="text"
                 placeholder="user email "
@@ -232,7 +224,7 @@ class UserFormRegistrationBody extends Component {
               )}
             </div>
             <div className="Registration-password">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Password*</label>
               <input
                 type="password"
                 placeholder="password*** "
@@ -246,7 +238,7 @@ class UserFormRegistrationBody extends Component {
               )}
             </div>
             <div className="Registration-password">
-              <label htmlFor="password">Confirm Password</label>
+              <label htmlFor="password">Confirm Password*</label>
               <input
                 type="password"
                 placeholder="password*** "
