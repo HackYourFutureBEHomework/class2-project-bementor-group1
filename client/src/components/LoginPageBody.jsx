@@ -16,6 +16,7 @@ class LoginPageBody extends Component {
       lastname: null,
       email: null,
       password: null,
+      auth: "",
       loginErrors: {
         firstname: "",
         lastname: "",
@@ -26,6 +27,16 @@ class LoginPageBody extends Component {
       redirectUrl: ""
     };
   }
+
+  handleRegister = async e => {
+    e.preventDefault();
+    let redirectRegister = "/Registration";
+    this.setState({
+      redirect: true,
+      redirectUrl: redirectRegister
+    });
+  };
+
   handleSubmit = async e => {
     e.preventDefault();
 
@@ -35,19 +46,12 @@ class LoginPageBody extends Component {
       this.state.loginErrors.email.length === 0 &&
       this.state.loginErrors.password.length === 0
     ) {
-      //console.log("        First Name: ", this.state.firstname);
-      //console.log("        last Name: ", this.state.lastname);
-      //console.log("        password : ", this.state.password);
-      //console.log("        email : ", this.state.email);
-
       const fname = this.state.firstname;
       const lname = this.state.lastname;
       const email = this.state.email;
       const pword = this.state.password;
 
       const loginresult = await loginuser(fname, lname, email, pword);
-
-      //console.log("loginresult", loginresult);
 
       // redirect to users page
       if (loginresult.success === true) {
@@ -58,9 +62,12 @@ class LoginPageBody extends Component {
         });
       } else {
         this.setState({
+          auth: "Autentication Failed please register.."
+        });
+        /* this.setState({
           redirect: true,
           redirectUrl: "/LoginFailed"
-        });
+        });*/
       }
     } else {
       console.error(
@@ -96,58 +103,57 @@ class LoginPageBody extends Component {
         break;
     }
 
-    this.setState({ loginErrors, [name]: value }, () =>
-      console.log(this.state)
-    );
+    /*this.setState({ loginErrors, [name]: value }, () =>
+      console.log(this.state)*/
+    this.setState({ loginErrors, [name]: value });
   };
   render() {
+    let { loginErrors, auth } = this.state;
     if (this.state.redirect === true) {
       return <Redirect to={this.state.redirectUrl} />;
     }
+
     return (
       <div className="wrapper-login">
         <div className="form-wrapper-login">
           <h1 className="login-title">Login</h1>
           <form onSubmit={this.handleSubmit.bind(this)}>
-            <div className="login-firstname">
-              <label htmlFor="name">Firstname</label>
-              <input
-                type="text"
-                placeholder="user firstname "
-                name="firstname"
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="login-lastname">
-              <label htmlFor="name">Lasttname</label>
-              <input
-                type="text"
-                placeholder="user lastname "
-                name="lastname"
-                onChange={this.handleChange}
-              />
-            </div>
             <div className="login-email">
               <label htmlFor="email">Email</label>
               <input
+                className={loginErrors.email.length > 0 ? "error" : null}
                 type="text"
                 placeholder="user email "
                 name="email"
                 onChange={this.handleChange}
               />
+              {loginErrors.email.length > 0 && (
+                <span className="errorMessage">{loginErrors.email}</span>
+              )}
             </div>
             <div className="login-password">
               <label htmlFor="password">Password</label>
               <input
+                className={loginErrors.password.length > 0 ? "error" : null}
                 type="password"
                 placeholder="password*** "
                 name="password"
                 onChange={this.handleChange}
               />
+              {loginErrors.password.length > 0 && (
+                <span className="errorMessage">{loginErrors.password}</span>
+              )}
             </div>
-            <div>
-              <button type="button-Login" className="login-button">
-                Login
+            <div className="login-button">
+              <button type="submit">Login</button>
+              <small>
+                {auth.length > 0 && (
+                  <span className="errorMessage">{auth}</span>
+                )}
+              </small>
+              <small> not Registered yet ?</small>
+              <button onClick={this.handleRegister.bind(this)}>
+                Create Account
               </button>
             </div>
           </form>

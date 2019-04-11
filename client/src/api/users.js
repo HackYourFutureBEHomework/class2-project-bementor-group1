@@ -21,6 +21,22 @@ export const loginuser = (fname, lname, email, pword) => {
       email: email,
       password: pword
     }),
+    credentials: "include",
+    headers: { "Content-Type": "application/json" }
+  }).then(response => response.json());
+};
+
+// for registration
+export const userRegistration = (fname, lname, email, pword, userStatus) => {
+  return fetch(`${API_URL}/api/user/register`, {
+    method: "POST",
+    body: JSON.stringify({
+      firstName: fname,
+      lastName: lname,
+      email: email,
+      password: pword,
+      userStatus: userStatus
+    }),
     headers: { "Content-Type": "application/json" }
   }).then(response => response.json());
 };

@@ -6,6 +6,7 @@ import Mentors from "./components/Mentors";
 import Contact from "./components/ContactPage";
 import LoginPage from "./components/LoginPage";
 import LoginFailed from "./components/LoginFailed";
+import Registration from "./components/Registration";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
           <Route path="/contact" component={Contact} />
           <Route path="/Login" component={LoginPage} />
           <Route path="/LoginFailed" component={LoginFailed} />
+          <Route path="/Registration" component={Registration} />
 
           <Route render={() => <p>Page not found</p>} />
         </Switch>

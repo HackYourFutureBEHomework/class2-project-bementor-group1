@@ -1,4 +1,4 @@
-.wrapper-login {
+.wrapper-Registration {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.form-wrapper-login {
+.form-wrapper-Registration {
   width: 400px;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@
   background-color: #ffffff;
 }
 
-.login-title {
+.Registration-title {
   text-align: center;
   width: 100%;
   color: #111;
@@ -50,14 +50,19 @@ input::placeholder {
   color: #999;
 }
 
-.login-password,
-.login-email {
+.Registration-firstname,
+.Registration-lastname,
+.Registration-password,
+.Registration-email {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
   width: 100%;
 }
 
+.bio {
+  margin-left: 1%;
+}
 .errorMessage {
   color: red;
   font-size: 0.75em;
@@ -68,8 +73,8 @@ input.error {
   border: 1px solid red;
 }
 
-.login-button button {
-  background-color: #519e8a;
+.createAccount button {
+  background-color: #00bc66;
   color: #fff;
   border: 2px solid #fff;
   width: 100%;
@@ -79,11 +84,10 @@ input.error {
   font-weight: lighter;
   letter-spacing: 1px;
   margin-bottom: 0.25em;
-  justify-content: center;
 }
 
-.login-button button:hover {
-  color: #519e8a;
+.createAccount button:hover {
+  color: #00bc66;
   background-color: #fff;
-  border: 2px solid #519e8a;
+  border: 2px solid #00bc66;
 }
