@@ -1,3 +1,8 @@
+a {
+  color: white;
+  text-decoration: none;
+}
+
 .header {
   background-image: url(../images/pattern.gif);
   width: 100%;

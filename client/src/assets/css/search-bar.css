@@ -3,6 +3,7 @@
   align-content: center;
   max-width: 800px;
   margin: 1em auto;
+  padding: 10%;
 }
 
 .app-search input {

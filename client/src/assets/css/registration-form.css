@@ -99,3 +99,7 @@ input.error {
 .registration_rerouteMessage {
   margin-left: 30%;
 }
+
+.registrationRerouting {
+  color: black;
+}
