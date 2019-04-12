@@ -12,7 +12,7 @@ class MainBody extends Component {
           BeMentor is an open source mentorship platform to connect women in
           technology.
         </p>
-        <a href="" className="main-buttom">
+        <a href="http://localhost:3000/Registration" className="main-buttom">
           Register now!
         </a>
       </main>

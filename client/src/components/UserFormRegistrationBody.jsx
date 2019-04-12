@@ -280,7 +280,10 @@ class UserFormRegistrationBody extends Component {
               {registrationFail.length > 0 && (
                 <span className="errorMessage">{registrationFail}</span>
               )}
-              <a href="http://localhost:3000/Login">
+              <a
+                href="http://localhost:3000/Login"
+                className="registrationRerouting"
+              >
                 <small className="registration_rerouteMessage">
                   Already Registered ?{" "}
                 </small>

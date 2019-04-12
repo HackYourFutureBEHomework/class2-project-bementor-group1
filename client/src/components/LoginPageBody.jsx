@@ -123,7 +123,7 @@ class LoginPageBody extends Component {
               <input
                 className={loginErrors.email.length > 0 ? "error" : null}
                 type="text"
-                placeholder="user email "
+                placeholder="janice.doe@hyf.com "
                 name="email"
                 onChange={this.handleChange}
               />
@@ -136,7 +136,7 @@ class LoginPageBody extends Component {
               <input
                 className={loginErrors.password.length > 0 ? "error" : null}
                 type="password"
-                placeholder="password*** "
+                placeholder="******** "
                 name="password"
                 onChange={this.handleChange}
               />
@@ -151,7 +151,14 @@ class LoginPageBody extends Component {
                   <span className="errorMessage">{auth}</span>
                 )}
               </small>
-              <small> not Registered yet ?</small>
+              <a
+                href="http://localhost:3000/Registration"
+                className="registrationRerouting"
+              >
+                <small className="registration_rerouteMessage">
+                  Not Registered?{" "}
+                </small>
+              </a>{" "}
               <button onClick={this.handleRegister.bind(this)}>
                 Create Account
               </button>
