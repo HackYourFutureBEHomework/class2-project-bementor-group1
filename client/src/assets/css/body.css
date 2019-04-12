@@ -1,50 +1,86 @@
-a {
+.main-container {
+  width: 100%;
+  height: 100%;
+}
+
+.main-background {
+  width: 100%;
+  height: 1000px;
+  background-image: url(../images/MainImage.png);
+  opacity: 0.3;
+  background-size: cover;
+  background-position: center center;
+  z-index: -1;
+  position: relative;
+}
+
+.main-title {
+  font-family: "Poppins";
+  font-size: 50px;
+  font-weight: normal;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: white;
-  text-decoration: none;
+  padding: 10px 10px 10px 10px;
 }
 
-.home-container {
-  display: flex;
-  flex-direction: row;
-}
-
-.home-image {
-  max-width: 800px;
-  max-height: 503px;
-  content: url("../images/front-image.gif");
-  margin-top: 5%;
-  margin-left: 2%;
-  margin-right: 2%;
-}
-
-.home-pageSubTitle1 {
-  font-size: 4rem;
-  text-align: center;
+.main-text {
   font-family: "Poppins";
-  margin-top: 13%;
-  margin-left: 5%;
+  opacity: 1;
+  text-align: center;
+  font-size: 30px;
+  font-weight: normal;
+  position: absolute;
+  top: 105%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #00bc66;
+  padding: 10px 10px 10px 10px;
+}
+
+.main-buttom {
+  text-align: center;
+  font-size: 30px;
+  font-weight: normal;
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px 15px 10px 15px;
+  background: #00bc66;
+  color: #fff;
+  border: none;
+  height: 70px;
+  font-size: 1.6em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+}
+.main-buttom:hover {
+  background: #fff;
   color: #00bc66;
 }
-
-.home-pageSubTitle2 {
-  font-size: 4rem;
-  text-align: center;
-  font-family: "Poppins";
-  margin-top: 4%;
-  color: #00bc66;
+.main-buttom:before,
+.main-buttom:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #00bc66;
+  transition: 400ms ease all;
 }
-
-.home-paragraph1 {
-  padding: 20px 80px 0px 80px;
-  text-align: center;
-  font-family: "Poppins";
-  margin-top: 10%;
+.main-buttom:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
 }
-
-.home-paragraph2 {
-  padding: 20px 80px 50px 80px;
-  text-align: center;
-  font-family: "Poppins";
-  margin-left: 20%;
-  margin-right: 20%;
+.main-buttom:hover:before,
+.main-buttom:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
 }
