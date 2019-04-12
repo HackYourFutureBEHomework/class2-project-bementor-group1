@@ -181,13 +181,13 @@ class UserFormRegistrationBody extends Component {
     return (
       <div className="wrapper-Registration">
         <div className="form-wrapper-Registration">
-          <h1 className="Registration-title">Registration From</h1>
+          <h1 className="Registration-title">Registration Form</h1>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div className="Registration-firstname">
-              <label htmlFor="name">Firstname*</label>
+              <label htmlFor="name">First name</label>
               <input
                 type="text"
-                placeholder="user firstname "
+                placeholder="Janice "
                 name="firstname"
                 onChange={this.handleChange}
               />
@@ -198,10 +198,10 @@ class UserFormRegistrationBody extends Component {
               )}
             </div>
             <div className="Registration-lastname">
-              <label htmlFor="name">Lastname*</label>
+              <label htmlFor="name">Last name</label>
               <input
                 type="text"
-                placeholder="user lastname "
+                placeholder="Doe "
                 name="lastname"
                 onChange={this.handleChange}
               />
@@ -212,10 +212,10 @@ class UserFormRegistrationBody extends Component {
               )}
             </div>
             <div className="Registration-email">
-              <label htmlFor="email">Email*</label>
+              <label htmlFor="email">Email</label>
               <input
                 type="text"
-                placeholder="user email "
+                placeholder="janice.doe@hyf.com "
                 name="email"
                 onChange={this.handleChange}
               />
@@ -224,10 +224,10 @@ class UserFormRegistrationBody extends Component {
               )}
             </div>
             <div className="Registration-password">
-              <label htmlFor="password">Password*</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
-                placeholder="password*** "
+                placeholder="********"
                 name="password"
                 onChange={this.handleChange}
               />
@@ -238,10 +238,10 @@ class UserFormRegistrationBody extends Component {
               )}
             </div>
             <div className="Registration-password">
-              <label htmlFor="password">Confirm Password*</label>
+              <label htmlFor="password">Confirm password</label>
               <input
                 type="password"
-                placeholder="password*** "
+                placeholder="********"
                 name="cpassword"
                 onChange={this.handleChange}
               />
@@ -251,34 +251,38 @@ class UserFormRegistrationBody extends Component {
                 </span>
               )}
             </div>
-            <div className="radio">
-              <label>
-                <input
-                  type="radio"
-                  name="userStatus"
-                  value="mentor"
-                  onChange={this.handleChange}
-                />
-                mentor
-              </label>
-            </div>
-            <div className="radio">
-              <label>
-                <input
-                  type="radio"
-                  name="userStatus"
-                  value="mentee"
-                  onChange={this.handleChange}
-                />
-                mentee
-              </label>
+            <div className="registration_radioButtons">
+              <div className="radio">
+                <label>
+                  <input
+                    type="radio"
+                    name="userStatus"
+                    value="mentor"
+                    onChange={this.handleChange}
+                  />
+                  &nbsp;&nbsp;mentor
+                </label>
+              </div>
+              <div className="radio">
+                <label>
+                  <input
+                    type="radio"
+                    name="userStatus"
+                    value="mentee"
+                    onChange={this.handleChange}
+                  />
+                  &nbsp;&nbsp;mentee
+                </label>
+              </div>
             </div>
             <div className="createAccount">
               <button type="submit">Create Account</button>
               {registrationFail.length > 0 && (
                 <span className="errorMessage">{registrationFail}</span>
               )}
-              <small>Already Registered ? </small>
+              <a href="http://localhost:3000/Login">
+                <small>Already Registered ? </small>
+              </a>
               <button onClick={this.handleLogin.bind(this)}>Login</button>
             </div>
           </form>

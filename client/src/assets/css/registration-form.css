@@ -91,3 +91,7 @@ input.error {
   background-color: #fff;
   border: 2px solid #00bc66;
 }
+
+.registration_radioButtons {
+  margin-left: 40%;
+}
