@@ -1,3 +1,8 @@
+a {
+  color: white;
+  text-decoration: none;
+}
+
 .home-container {
   display: flex;
   flex-direction: row;
@@ -36,7 +41,6 @@
   margin-top: 10%;
 }
 
-
 .home-paragraph2 {
   padding: 20px 80px 50px 80px;
   text-align: center;
@@ -44,4 +48,3 @@
   margin-left: 20%;
   margin-right: 20%;
 }
-

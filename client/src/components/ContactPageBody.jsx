@@ -11,13 +11,10 @@ const ContactPageBody = props => {
           <span>&nbsp;&nbsp;BeCentral, Cantersteen 12, 1000 Bruxelles</span>
           <br />
           <i className="fas fa-envelope-square" />
-          <a href="mailto:info@bementor.be">
-            <span>&nbsp;&nbsp;info@bementor.be</span>
-          </a>
+          <span>&nbsp;&nbsp;info@bementor.be</span>
           <br />
-
           <i className="fas fa-phone" />
-          <a href="tel:+32 (0)xxx xx xx xx;">&nbsp;&nbsp;+32 (0)X XXX XX XX</a>
+          <span>&nbsp;&nbsp;+32 (0)X XXX XX XX</span>
         </div>
 
         <div className="openStreetMap">
