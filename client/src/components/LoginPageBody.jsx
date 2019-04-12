@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { loginuser } from "../api/users";
-//import { loginUsers } from "../api/users";
 import { Redirect } from "react-router-dom";
 import "../assets/css/login-page.css";
 
@@ -52,6 +51,7 @@ class LoginPageBody extends Component {
       const pword = this.state.password;
 
       const loginresult = await loginuser(fname, lname, email, pword);
+      console.log("loginresult", loginresult);
 
       // redirect to users page
       if (loginresult.success === true) {
@@ -64,10 +64,6 @@ class LoginPageBody extends Component {
         this.setState({
           auth: "Autentication Failed please register.."
         });
-        /* this.setState({
-          redirect: true,
-          redirectUrl: "/LoginFailed"
-        });*/
       }
     } else {
       console.error(

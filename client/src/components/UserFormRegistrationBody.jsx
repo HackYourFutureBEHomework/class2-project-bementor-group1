@@ -53,11 +53,6 @@ class UserFormRegistrationBody extends Component {
       const lname = this.state.lastName;
       const email = this.state.email;
       const pword = this.state.password;
-      /*const bio = this.state.bio;
-      const img = this.state.img;
-      const tagline = this.state.tagline;
-      const interest = this.state.interest;
-      const campus = this.state.campus;*/
       const userStatus = this.state.userStatus;
 
       const registrationResult = await userRegistration(
