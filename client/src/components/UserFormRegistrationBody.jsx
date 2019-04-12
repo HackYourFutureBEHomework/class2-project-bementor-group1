@@ -281,7 +281,9 @@ class UserFormRegistrationBody extends Component {
                 <span className="errorMessage">{registrationFail}</span>
               )}
               <a href="http://localhost:3000/Login">
-                <small>Already Registered ? </small>
+                <small className="registration_rerouteMessage">
+                  Already Registered ?{" "}
+                </small>
               </a>
               <button onClick={this.handleLogin.bind(this)}>Login</button>
             </div>

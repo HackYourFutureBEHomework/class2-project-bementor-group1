@@ -95,3 +95,11 @@ input.error {
 .registration_radioButtons {
   margin-left: 40%;
 }
+
+.registration_rerouteMessage {
+  margin-left: 30%;
+}
+
+a {
+  text-decoration: none;
+}
