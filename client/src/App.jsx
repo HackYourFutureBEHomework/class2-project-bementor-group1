@@ -7,6 +7,7 @@ import Contact from "./components/ContactPage";
 import LoginPage from "./components/LoginPage";
 import LoginFailed from "./components/LoginFailed";
 import Registration from "./components/Registration";
+import EditForm from "./components/EditForm";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
 
           <Route path="/mentors" component={Mentors} />
           <Route path="/userprofile/:userid" component={UserProfile} />
+          <Route path="/editProfile" component={EditForm} />
           <Route path="/contact" component={Contact} />
           <Route path="/Login" component={LoginPage} />
           <Route path="/LoginFailed" component={LoginFailed} />

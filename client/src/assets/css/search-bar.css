@@ -2,8 +2,9 @@
   display: flex;
   align-content: center;
   max-width: 800px;
+  margin-top: -10%;
   margin: 1em auto;
-  padding: 10%;
+  padding: 3%;
 }
 
 .app-search input {

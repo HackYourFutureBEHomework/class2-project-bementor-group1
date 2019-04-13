@@ -1,0 +1,79 @@
+html {
+  font-family: "Poppins";
+}
+.edit-title {
+  font-family: "Poppins";
+  color: #00bc66;
+}
+
+.edit-title2 {
+  font-family: "Poppins";
+  font-size: large;
+}
+.edit-wrapper {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  max-width: 900px;
+  height: 750px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-style: dotted;
+  border-color: #00bc66;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.edit-bio {
+  height: 200px;
+  display: table;
+}
+
+.edit-photo {
+  width: 150px;
+  height: 60px;
+  color: #fff !important;
+  text-transform: uppercase;
+  background: #deaa00;
+  padding: 20px;
+  border-radius: 50px;
+  display: inline-block;
+  border: none;
+}
+
+.delete-profile {
+  width: 150px;
+  height: 50px;
+  color: #fff !important;
+  text-transform: uppercase;
+  background: #00bc66;
+  padding: 15px;
+  border-radius: 50px;
+  display: inline-block;
+  border: none;
+}
+.save-profile {
+  width: 150px;
+  height: 50px;
+  color: #fff !important;
+  text-transform: uppercase;
+  background: #00bc66;
+  padding: 15px;
+  border-radius: 50px;
+  display: inline-block;
+  border: none;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
