@@ -3,7 +3,12 @@ const User = require("../model/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET, API_KEY, DOMAIN } = process.env;
+
+const mailgun = require("mailgun-js")({
+  apiKey: API_KEY,
+  domain: DOMAIN
+});
 
 exports.findAll = (req, res) => {
   User.find()
@@ -93,6 +98,24 @@ exports.register = (req, res) => {
       return user.save();
     })
     .then(user => {
+      //---------mail-------------
+      //let userPath = `http://localhost:3000/Login`;
+      let userPath = "http://localhost:3000/userprofile/" + user._id;
+      let data = {
+        from: "manjubementortestmail@gmail.com",
+        to: "manjubementortestmail@gmail.com",
+        subject: "Registration Sucssesful!",
+        text: `Welcome to BeMentor! You're receiving this email because you have registered at Bementor.This is confirmantion mail Please comfirm your account here ${userPath} `
+      };
+      mailgun.messages().send(data, function(error, body) {
+        if (error) {
+          console.log("error", error);
+        } else {
+          console.log("body", body);
+        }
+      });
+      //--------mail ----------
+
       res.status(201).send({
         success: true,
         _id: user._id,
@@ -113,15 +136,6 @@ exports.querylogin = (req, res) => {
     if (!user) {
       return res.status(404).json({ emailnotfound: "Email not found" });
     }
-    /* if (user.firstName != req.body.firstname) {
-      return res
-        .status(404)
-        .json({ firstnamenotfound: "firstname not matched" });
-    }
-    if (user.lastName != req.body.lastname) {
-      return res.status(404).json({ lastnamenotfound: "lastname not matched" });
-    }*/
-
     // check password
     bcrypt.compare(password, user.password).then(matchresult => {
       if (matchresult) {
